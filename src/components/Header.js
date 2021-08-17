@@ -1,6 +1,5 @@
 import {MenuIcon, SearchIcon, ShoppingCartIcon} from '@heroicons/react/solid'
-import Image from 'next/image'
-
+import Image from 'next/image';
 const Header = () => {
     return (
         <header>
@@ -54,9 +53,8 @@ const Header = () => {
                 <p className="link hidden lg:inline-flex">Buy Again</p>
                 <p className="link hidden lg:inline-flex">Shopper Toolkit</p>
                 <p className="link hidden lg:inline-flex">Health & Personal Care</p>
-
             </div>
         </header>
     )
 }
-export default Header
+export default Header;

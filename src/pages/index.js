@@ -1,19 +1,36 @@
 import Head from "next/head";
 import Header from "../components/Header";
+import Banner from "../components/Banner";
+import ProductFeed from "../components/ProductFeed"
 
-export default function Home() {
+export default function Home({products}) {
   return (
-    <div>
+    <div className='bg-gray-100'>
       <Head>
         <title>Amazon 2.0</title>
       </Head>
       {/* Header */}
       <Header/>
-      <main>
+      <main className="max-w-screen-2xl mx-auto">
         {/* Banner */}
+        <Banner/>
         {/* ProductFeed */}
+        <ProductFeed products={products}/> 
+        
       </main>
     </div>
   );
 }
-//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  
+
+export const getServerSideProps = async(context) => {
+  //please calculate somthing on the server first to rednder out the page and then deliver it to user rather then sending full site
+  const products = await fetch('https://fakestoreapi.com/products')// >>get 
+  .then(
+    res=>res.json()
+  )
+  return {
+    props:{
+      products,
+    }
+    }
+}

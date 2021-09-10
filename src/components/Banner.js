@@ -11,6 +11,7 @@ const Banner = () => {
                 showIndicators={false}
                 showThumbs={false}
                 interval={5000}>
+                    
                 <div className=''>
                     <img loading="lazy" src='https://links.papareact.com/gi1' alt=""/> {/* laoding lazy  makes the user experience faster */}
                 </div>

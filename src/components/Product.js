@@ -26,6 +26,7 @@ const Product = ({
             description,
             category,
             image,
+            hasPrime,
         }
         //Sending the product as an action to the redux store ...the basket slice
         dispatch(addToBasket(product));

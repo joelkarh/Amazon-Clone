@@ -15,7 +15,25 @@ export const basketSlice = createSlice({
       //manipulating in the global store and pass in a array , product from 'dispatch(addToBasket(product))'  gets back  as payload;
       state.items  = [...state.items, action.payload  ]
     },
-    removeFromBasket: (state, action) => {},
+    removeFromBasket: (state, action) => {
+      //going to find the index of the item and see if t exiist 
+      //findIndex  search 
+      const index = state.items.findIndex(
+      (basketItem)=>
+      basketItem.id === action.payload.id);
+      //here we create a copy of a new basket 
+      let newBasket = [...state.items];
+
+      if(index >= 0){
+        //the item exists in the basket ...remove it...
+        newBasket.splice(index,1)
+      }else{
+        console.warn(
+          `Can't move product (id: ${action.payload.id} as its not in the Basket)`
+        );
+      }
+      state.items = newBasket
+    },
   },
 });
 

@@ -33,4 +33,6 @@ export const getServerSideProps = async(context) => {
       products,
     }
     }
+ console.log(products)
 }
+

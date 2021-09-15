@@ -2,6 +2,8 @@ import {StarIcon} from '@heroicons/react/solid';
 import Image from 'next/image';
 import Currency from 'react-currency-formatter';
 import {useDispatch}  from 'react-redux'
+import {useSelector} from 'react-redux'
+import {selectItems} from '../slices/basketSlice'
 import {addToBasket, removeFromBasket} from '../slices/basketSlice'
 const CheckoutProduct = ({
     id,
@@ -13,7 +15,9 @@ const CheckoutProduct = ({
     image,
     hasPrime
 }) => {
-   const dispatch = useDispatch()
+
+    const items = useSelector(selectItems)
+    const dispatch = useDispatch()
     const addItemToBasket= ()=> {
         const product = {
             id,
@@ -26,9 +30,9 @@ const CheckoutProduct = ({
             hasPrime
         };
         //push item to redux
-        dispatch(addToBasket())
+        dispatch(addToBasket(product))
     }
-    const removeFromBasket =()=>{
+    const removeItemFromBasket =()=>{
         //remove item from redux
         dispatch(removeFromBasket({id}))
     }
@@ -36,7 +40,7 @@ const CheckoutProduct = ({
         <div className="grid grid-cols-5">
             <Image src={image} height={200} width={200} objectFit='contain'/> 
             {/* middle */}
-            <div class="col-span-3 mx-5">
+            <div className="col-span-3 mx-5">
                 <p>{title}</p>
                 <div className="flex">
                     {Array(rating)
@@ -58,14 +62,15 @@ const CheckoutProduct = ({
                         loading="lazy"
                         
                         />
+                        
                         <p className='text-xs text-gray-500'>FREE Next-day Delivery</p>
                     </div>
                 )}
             </div>
             {/* Right add/remove buttons */}
             <div className='flex flex-col space-y-2 my-auto justify-self-end'>
-                <button onClick={addItemToBasket} className="button">Add to basket </button>
-                <button onClick={removeFromBasket} className="button">Remove from basket </button>
+                <button onClick={addItemToBasket} className="button">Add to basket  </button>
+                <button onClick={removeItemFromBasket} className="button">Remove from basket </button>
             </div>
         </div>
     )

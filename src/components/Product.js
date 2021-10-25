@@ -47,7 +47,7 @@ const Product = ({
             <p className="text-xs my-2 line-clamp-2">{description}</p>
 
             <div className='mb-5'>
-                <Currency quantity={price} currency="GBP"/>
+                <Currency currency="EUR"  quantity={price} />
             </div>
 
             {hasPrime && (
